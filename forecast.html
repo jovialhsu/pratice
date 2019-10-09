@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style.css">
+    <title>天氣預報</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
+    <script src="js/main.js" async></script>
+</head>
+
+<body> 
+  <div class="container">
+    <div class="videoWrap">
+        <video id="fullVideo" class="" muted="muted" autoplay="autoplay" loop="loop"
+          src="e0d181b4-1efc-48cf-8cc9-df6b446293dd.webm"></video>
+    </div>
+    <div id="app">
+      <h1>天氣預報</h1>
+      <div class="optionWrap">
+          <select v-model="input.type">
+            <option selected value="全部縣市">全部縣市</option>
+            <option v-for="data in forecasts" :value="data.locationName">
+                {{ data.locationName }}
+            </option>
+            </select>
+      </div>
+       
+       <div class="cardWrap">
+           <div v-for = "data in typeCounty" class= "card">
+               <div class="title"><h2>{{data.locationName}}</h2>今日18:00-明日06:00</div> 
+             <span class="infoText" v-text="data.weatherElement[0].time[2].parameter.parameterName"></span>
+             <span class="infoText" v-text="data.weatherElement[2].time[2].parameter.parameterName"></span>
+             <span class="infoText" v-text="data.weatherElement[2].time[2].parameter.parameterUnit"></span>
+             <span>~</span>
+             <span class="infoText" v-text="data.weatherElement[1].time[2].parameter.parameterName"></span>
+             <span class="infoText" v-text="data.weatherElement[1].time[2].parameter.parameterUnit"></span>
+             <div>
+                 <span class="infoText">降雨機率：</span>
+                 <span class="infoText" v-text="data.weatherElement[4].time[2].parameter.parameterName" ></span>
+                 <span class="infoText">%</span>
+             </div>
+           </div>
+       </div>
+    </div>
+  </div>
+   
+    
+</body>
+
+</html>
