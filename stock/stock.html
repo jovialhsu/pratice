@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style.css">
+    <title>每日股價收盤資訊</title>
+    <link rel="stylesheet" href="stock.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
+    <script src="main.js" async></script>
+</head>
+
+<body> 
+  <div class="container">
+    <div class="videoWrap">
+        <video id="fullVideo" class="" muted="muted" autoplay="autoplay" loop="loop"
+          src="03a896cd-a1f0-437a-9d81-3b38cab1426d.webm"></video>
+    </div>
+    <div id="app">
+      <h1>每日股價收盤資訊</h1>
+      <form id="searchStock">
+        Search:<input name="query" v-model="searchQuery">
+      </form>
+      <demo-grid
+        :stocks="stocks"
+        :columns="gridColumns"
+        :filter-key="searchQuery"
+      >
+      </demo-grid>
+      </div>
+    </div>
+  </div>
+</body>
+<script type="text/x-template" id="grid-template">
+  <table>
+    <thead>
+      <tr>
+        <th v-for="key in columns"
+            @click="sortBy(key)"
+            :class="{ active : sortKey == key }">
+            {{ key }}
+            <span class="arrow" :class="sortOrders[key] > 0 ? 'asc' : 'dsc'"></span>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr v-for="entry in filteredStocks">
+        <td v-for="key in columns">
+          {{entry[key]}}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</script>
+</html>
