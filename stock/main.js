@@ -64,7 +64,37 @@
                     axios.get(opendata).then((stocks)=>{
                        this.stocks=stocks.data;
                         console.log(stocks)});
-                       //console.log( axios.get(opendata));                            
+                       //console.log( axios.get(opendata));  
+                  
+                  //const cors = 'https://cors-anywhere.herokuapp.com/'; // use cors-anywhere to fetch api data
+            //     const url = 'http://www.twse.com.tw/exchangeReport/STOCK_DAY_ALL?response=open_data'; // origin api url
+
+                    
+            //            /** fetch api url by cors-anywhere */
+            //         axios.get(`${cors}${url}`)
+            //         .then((response) => {
+            //             //this.stocks =JSON.parse( response.data);
+            //             var tempData = response.data.split(/\n|\r\n/);///代表用enter鍵/和shift+enter鍵換行的情況
+            //             var result = [];
+            //             var headers= tempData[0].split(",");
+            //             for (var i = 1; i<tempData.length;i++){
+            //                 var obj={};
+            //                 var currentData=tempData[i].split(",");
+            //                 for(var j = 0; j<headers.length;j++){
+            //                     obj[headers[j]] = currentData[j]
+            //                 }
+            //                 result.push(obj)
+            //             }
+            //             return  console.log(JSON.stringify(result));
+            //             //this.stocks=stocks.data;
+
+            //         //this.stocks =JSON.stringify(msg)
+                    
+            //         },
+            //         (error) => {
+            //         }
+            //         );                            
+            // },
             },
 
         });
