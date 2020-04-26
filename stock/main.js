@@ -60,7 +60,7 @@
                 stocks:[],
             },
             mounted() {
-                    let opendata='testOpendata.php'
+                    let opendata='https://quality.data.gov.tw/dq_download_json.php?nid=11549&md5_url=bb878d47ffbe7b83bfc1b41d0b24946e'
                     axios.get(opendata).then((stocks)=>{
                        this.stocks=stocks.data;
                         console.log(stocks)});

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
+</head>
+<body>
+    <script>
+    var proportion = proportion.indexOf(".") >= 0 ?proportion.split(".")[0]:proportion;
+
+        var json = [];
+        
+        $.ajax({
+        
+        url : "/plugin/fourPlatforms/getIssueCurrentDynamic.action?orgId=" + USER_ORG_ID,
+        
+        async : false,
+        
+        success : function (data) {
+        
+        $.each(data, function (i, item) {
+        
+        issueIds.push(data[i].issueId);
+        
+        var state;
+        
+        if (data[i].status == 1) {
+        
+        state = "办理中"
+        
+        } else if (data[i].status == 300) {
+        
+        state = "已完成"
+        
+        }
+        
+         
+        
+        var is = new Object();
+        
+        is.name=data[i].subject;
+        
+        is.types=data[i].issueTypeName;
+        
+        is.adress=data[i].createOrg.orgName;
+        
+        is.date=data[i].occurDate;
+        
+        if(i<6){
+        
+        json.push(is);
+        
+        }
+        
+        });
+        
+         
+        
+         
+        
+        }
+        
+        });
+        
+        var json_str = JSON.stringify(json);
+        console.log(json_str)
+        evArr = jQuery.parseJSON(json_str);
+        console.log(evArr)
+        for(let i = 0;i < evArr.length;i++){
+        
+        if(i>=6){
+        
+         
+        
+        evArr.shift();
+        
+        /*
+        
+        删除第一个元素
+        
+        */
+        
+         
+        
+        }
+        
+        }
+        
+         
+       </script>
+</body>
+</html>
