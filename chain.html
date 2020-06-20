@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+    Function.prototype.after =function(fn){
+        var self = this;
+        return function(){
+            var ret = self.apply(this,arguments);
+            if(ret == 'nextSuccessor'){
+                return fn.apply(this,arguments);
+            }
+            return ret;
+        }
+    }
+    var getActiveUploadObj = function(){
+        try {
+            return new ActiveXObject("TXFTNActiveX.FTNUpload");
+        } catch (error) {
+            return 'nextSuccessor'
+        }
+    }
+    function supportFlash(){
+        return false;
+    }
+    var getFlashUploadObj = function(){
+        if(supportFlash()){
+            var str = '<span style="color:red">123</span>'
+            return $(str).appendTo($('body'))
+        }
+        return 'nextSuccessor'
+    }
+    var getFormUploadObj = function(){
+        
+            var str = '<form style="color:red">form</form>'
+            return $(str).appendTo($('body'))
+      
+      
+    }
+    var getUploadObj = getActiveUploadObj.after(getFlashUploadObj).after(getFormUploadObj);
+    console.log(getUploadObj());
+    </script>
+</body>
+</html>

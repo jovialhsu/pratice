@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
+</head>
+<body>
+    <div id="J_FankuiList"></div>
+    <input type="hidden" name=""id="feedback_value">
+    <button type="button" οnclick="newFankui" id="newFankuiPropertyButton" class="">新建选项内容</button>
+    <button onclick="feedbackProperty">save</button>
+    
+</body>
+    <script>
+        $('#newFankuiPropertyButton').on('click',function(){
+            $("#J_FankuiList").append(fankui());
+        })
+        
+function fankui(iz){
+	var html = "";
+	html += "<div class='sku-div-in-controls'>";
+	html += "	<div class='hidentop5px'>";
+	html += "		<ul>";
+	html += "			<li class='marginright5'>";
+	html += "				<input type='hidden' name='optionId'/>";
+	html += "			</li>";
+	html += "			<li class='marginright5'>选项名称：";
+	html += "				<input type='text' name='name' id='paramValue0' class='text required' maxlength='10' />";
+	html += "			</li>";
+	html += "			<li class='marginright5'>排序序号：";
+	html += "				<input type='text' name='sequence' id='paramValue1' class='text required' maxlength='10' />";
+	html += "			</li>";
+	html += "			<li class='marginright5'>是否默认选择：<br/>";
+	html += "				<select name='checked'>";
+	html += "					<option value='1' class='required'>选中</option>";
+	html += "					<option value='0' class='required'>非选中</option>";
+	html += "									";	
+	html += "				</select>";
+	html += "			</li>";
+	html += "		</ul>";
+	html +="		<div>";
+	html +="			<a title='删除' href='javascript:void(0);'";
+	html +="				οnclick='delFankui(this);'>删除</a>";
+	html +="		</div>";
+	html +="		<div></div>";
+	html +="	</div>"	;
+	html +="</div>"	;
+	iz++;
+	return html;
+}
+function delFankui(obj){
+	$(obj).parent().parent().parent().remove();
+ 	$("#J_AddCustomSKU").attr("class","");
+ 	$("#J_AddCustomSKU").attr("onclick","addSkuList(this)");
+	$("#newFankuiPropertyButton").attr("class","");
+	$("#newFankuiPropertyButton").attr("onclick","newFankui(this);");
+ 
+}
+function feedbackProperty(){
+	var feedbackMap = new Map();
+	var valueList = null;
+	
+	var outerLength = $(".sku-div-in-controls > .hidentop5px > ul").get();	//外部“选项内容的集合”
+	console.log(outerLength)
+	
+	for(var i=0; i<outerLength.length; i++){
+		if(valueList ==null){
+			valueList = new Array();
+		}
+		//手机所有input=hidden对象
+		var valueHiddenList = $(outerLength[i]).parent().find(" ul > .marginright5 > input[type='hidden']").get();
+		
+		//收集所有input=text对象
+		var valueTextList = $(outerLength[i]).parent().find(" ul > .marginright5 > input[type='text']").get();
+		
+		//收集所有input=selected对象
+		var valueSelect = $(outerLength[i]).parent().find("ul > .marginright5 > select option:selected").get();
+		
+		//将input=hidden的值压入list
+		var a = $.trim($(valueHiddenList).val());
+		if(a!=null && a!="" && a!= undefined){
+			valueList.push(a);
+		}else{
+			a = "0";
+			valueList.push(a);
+		}
+		console.log(valueList)
+		//内循环2次，将input=text的值压入list
+		for(var j=0;j<3; j++){
+			if($(valueTextList[j]).val()!=null && $(valueTextList[j]).val() !="" && $(valueTextList[j]).val() != undefined){
+				valueList.push($.trim($(valueTextList[j]).val())); 
+			}
+		}
+		//将selected的值压入list
+		valueList.push($.trim($(valueSelect).val()));
+		var option = "option"+i;
+		feedbackMap.set(option, valueList);
+        valueList = null;
+        console.log(feedbackMap)
+	}
+	var json = JSON.stringify(feedbackMap);
+	if($("#feedback_value").val()!=null){	//#feedback_value不为空时，清空
+		$("#feedback_value").val();
+	}
+    $("#feedback_value").val(json);
+    console.log(json)
+}
+
+
+    </script>
+
+</html>
