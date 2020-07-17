@@ -1,0 +1,27 @@
+{
+  "success": "true",
+  "code": "00",
+  "message": "OK",
+  "discounts": [
+    {
+      "projNo": "P000000001933",
+      "projName": "買機票送上網商品折扣碼50元",
+      "projRemark": "恭喜您獲得50元購物金！凡購買WIFI網卡商品，單筆訂單滿3百即可折抵。購物金歸戶後7天有效，一旦使用，訂單取消亦不可返還。",
+      "discountType": "CASH",
+      "discountValue": "50",
+      "minOrderPrice": "0",
+      "orderDtBegins": "2020/01/09",
+      "orderDtExpires": "2020/12/31",
+      "discountCode": "e88a609d58cc2"
+    }
+  ],
+  "projNo": "P000000001933",
+  "projName": "買機票送上網商品折扣碼50元",
+  "projRemark": "恭喜您獲得50元購物金！凡購買WIFI網卡商品，單筆訂單滿3百即可折抵。購物金歸戶後7天有效，一旦使用，訂單取消亦不可返還。",
+  "discountType": "CASH",
+  "discountValue": "50",
+  "minOrderPrice": "0",
+  "orderDtBegins": "2020/01/09",
+  "orderDtExpires": "2020/12/31",
+  "discountCode": "e88a609d58cc2"
+}
