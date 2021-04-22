@@ -1,5 +1,6 @@
 <script>
-import Article from './components/Article.svelte';
+import Article from './Article.svelte';
+import Topic from './Topic.svelte';
 export let articles;
 </script>
 <style>
@@ -17,6 +18,7 @@ section{
 </style>
 <section class="blog">
 	<div class="container">
+     <Topic titleCn={'小農紀事'} titleEn={'blog'}/>
 		{#each articles as article}
 			<Article 
 				title={article.title}
