@@ -5,7 +5,7 @@ import IndexSection from './IndexSection.svelte'
 @import '../style/vars';
 .aboutUsTxt{
     margin: auto;
-    letter-spacing: 0.5px;
+    // letter-spacing: 0.5px;
     line-height: 1.3;
     text-indent: 2em;
     padding: 4vmin;
@@ -66,7 +66,7 @@ import IndexSection from './IndexSection.svelte'
         p{  
             text-indent: 2em;   
             line-height: 1.3;
-            letter-spacing: 0.5px;
+            // letter-spacing: 0.5px;
             padding: 4vmin;
         }
         &::before{

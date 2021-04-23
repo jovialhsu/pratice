@@ -4,7 +4,9 @@
 	import Footer from './components/Footer.svelte';
     import AboutSection from './components/AboutSection.svelte';
     import ShopSection from './components/ShopSection.svelte';
-import ExpSection from './components/ExpSection.svelte';
+	import ExpSection from './components/ExpSection.svelte';
+	import Carousel from './components/Carousel.svelte';
+
 	const articles =[
 		{
 			date:'2019-04-23',
@@ -41,6 +43,20 @@ import ExpSection from './components/ExpSection.svelte';
 			fruit:'有機紅寶石葡萄柚',price:350,weight:6,desc:'金桔',image:'img/Kumquat.png'
 		},
 	]
+	const slideImages= [
+		{image:"img/slides01.jpg",css:{
+			left:'0',display:'block',
+		}},
+		{image:"img/slide02_productpic_unsplash.jpg",css:{
+			left:'0',display:'block',
+		}},
+		{image:"img/pic_slides03.jpg",css:{
+			left:'0',display:'block',
+		}},
+		{image:"img/slide04_max-1053152-unsplash.jpg",css:{
+			left:'0',display:'block',
+		}},
+	]
 </script>
 <style type="text/scss">
 @font-face {
@@ -59,6 +75,7 @@ import ExpSection from './components/ExpSection.svelte';
 	<h1>Hello {name}!</h1>
 	<p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p>
 </main> -->
+<Carousel {slideImages}/>
 <AboutSection/>
 <ExpSection/>
 <ShopSection {fruits}/>

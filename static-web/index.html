@@ -370,7 +370,7 @@
                  let navHi = $('nav').outerHeight();
                  $(window).scroll(function(){
                      scrollTop = $(window).scrollTop();
-                     console.log(scrollTop)
+                    //  console.log(scrollTop)
                      if(scrollTop >= navHi ){
                          $('.page_header').addClass('fixed');
                      }else{
@@ -437,9 +437,7 @@
          }).appendTo('.slide_buttons');
          buttonArray.push($button); 
         });
-
         advance();
-
     });
     </script>
 
